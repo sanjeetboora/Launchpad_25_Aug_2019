@@ -11,3 +11,4 @@
 	- size of different variables or need of defining data type in pointers
 	- exceptional behaviour for char
 	- pointer's significance in arrays
+	
