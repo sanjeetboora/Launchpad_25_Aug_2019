@@ -6,24 +6,24 @@ int rotations(int* arr, int N){
 	while(low<=high){
 		int mid = low+(high-low)/2;
 
-		if(mid == 0){
+		if(mid == 0){ // if mid is 0, check it's right 
 			if(arr[mid+1]> arr[mid]){
 				return mid;
 			}
 		}
-		else if(mid == N-1){
+		else if(mid == N-1){// if mid is last index, check it's left 
 			if(arr[mid-1] > arr[mid]){
 				return mid;
 			}
 		}
-		else if(arr[mid-1] > arr[mid] && arr[mid+1]> arr[mid]){
+		else if(arr[mid-1] > arr[mid] && arr[mid+1]> arr[mid]){// otherwise, check left and right both
 			return mid;
 		}
 
-		else if(arr[high]<arr[mid]){
+		else if(arr[high]<arr[mid]){ // if high < mid, then result exist in right
 			low=mid+1;
 		}
-		else{
+		else{ // else result exist in left
 			high=mid-1;
 		}
 
