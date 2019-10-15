@@ -14,7 +14,7 @@
 	* 	There can be more than one local minima in an array, we need to find any one of them. 
 	-> localMinima.cpp
 
-  - Winning CB Scholarship -> https://hack.codingblocks.com/app/contests/1021/p/1226
+  - Winning CB Scholarship(Discussed) -> https://hack.codingblocks.com/app/contests/1021/p/1226 
 
 
 ### Home work problems

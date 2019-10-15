@@ -200,29 +200,176 @@ void reverseiter(node*&head) {
 }
 
 
+node* reverserec(node* head) {
+    //base case
+    if (head == NULL || head->next == NULL) {
+        return head;
+    }
+
+    node* smallLL = reverserec(head->next);
+    node* curr = head;
+    curr->next->next = curr;
+    curr->next = NULL;
+    return smallLL;
+
+}
+
+
+node* mid(node* head) {
+    if (head == NULL || head->next == NULL) {
+        return head;
+    }
+
+    node* fast = head->next;
+    node* slow = head;
+    while (fast != NULL && fast->next != NULL ) {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+
+    // node* fast = head;
+    // node* slow = head;
+    // while(fast->next->next!=NULL && fast->next !=NULL ){
+    //     fast = fast->next->next;
+    //     slow = slow->next;
+    // }
+    return slow;
+}
+
+
+node* lastKth(node* head, int k) {
+    node* fast = head;
+    node* slow = head;
+    int i = 1;
+    while (i < k) {
+        if (fast == NULL) {
+            cout << "last kth element doesn't exist" << endl;
+            return NULL;
+        }
+        fast = fast->next;
+        i++;
+    }
+    while (fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next;
+    }
+
+    return slow;
+}
+
+
+node* merge(node* a, node* b) {
+
+    if (a == NULL) {
+        return b;
+    }
+    else if (b == NULL) {
+        return a;
+    }
+    node*c;
+    if (a->data <= b->data) {
+        c = a;
+        c->next = merge(a->next, b);
+    }
+    else {
+        c = b;
+        c->next = merge(a, b->next);
+    }
+    return c;
+
+}
+
+node* mergesort(node* head) {
+    if (head == NULL || head->next == NULL) {
+        return head;
+    }
+    node* midpoint = mid(head);
+    node *a = head;
+    node *b = midpoint->next;
+    midpoint->next = NULL;
+    a = mergesort(a);
+    b = mergesort(b);
+
+    node* c = merge(a, b);
+    return c;
+}
+
+bool detectCycle(node* head) {
+    if (head == NULL || head->next == NULL) {
+        return false;
+    }
+
+    node* slow = head;
+    node* fast = head->next->next;
+
+    while (slow != fast) {
+        if (fast == NULL || fast->next == NULL) {
+            return false;
+        }
+        slow = slow->next;
+        fast = fast->next->next;
+
+    }
+    return true;
+
+}
+
+
 int main() {
     node *head = NULL;
 
     // insertAtHead(head,5);
     // insertAtHead(head,3);
-    // insertAtTail(head,9);
-    // insertAtK(head, 6,2);
-    // deleteAtHead(head);
-    // deleteAtTail(head);
-    // insertAtHead(head,3);
-    // insertAtTail(head,9);
+    //  insertAtTail(head,9);
+    //  insertAtK(head, 6,2);
+    //  deleteAtHead(head);
+    //  deleteAtTail(head);
+    //  insertAtHead(head,3);
+    //  insertAtTail(head,9);
     // deleteAtK(head,2);
     // cout<<length(head)<<endl;
-    buildList(head);
+    // buildList(head);
     // if(searchiter(head,5)){
     //     cout<<"key found"<<endl;
     // }
     // else{
     //     cout<<"key not found"<<endl;
     // }
-    print(head);
-    reverseiter(head);
-    print(head);
+    //  print(head);
+    //reverseiter(head);
+    //print(head);
+    // cout<<mid(head)->data<<endl;
+    // cout<<lastKth(head,3)->data<<endl;
+    //  node *head2 = NULL;
+    // buildList(head2);
+    // print(head2);
+    // node *headsorted = merge(head, head2);
+    // print(headsorted);
+    // node* head3 = NULL;
+    //  buildList(head3);
+    // print(head3);
+    // head3 = mergesort(head3);
+    // print(head3);
+    node* head4 = NULL;
+    head4 = new node(1);
+    head4->next = new node(2);
+    head4->next->next = new node(3);
+    head4->next->next->next = new node(4);
+    head4->next->next->next->next = new node(5);
+    head4->next->next->next->next->next = new node(6);
+    head4->next->next->next->next->next->next = new node(7);
+    // head4->next->next->next->next->next->next->next = head4->next->next;
+    head4->next->next->next->next->next->next->next = NULL;
+    cout << detectCycle(head4) << endl;
+
+
 
     return 0;
 }
+
+
+
+
+
+
+
