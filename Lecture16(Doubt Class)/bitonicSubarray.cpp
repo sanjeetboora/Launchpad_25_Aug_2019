@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
 	for (int i = 1; i < n; ++i)
 	{	
 		//inc array
-		if(arr[i-1] < arr[i]){
+		if(arr[i-1] <= arr[i]){
 			incArr[i] = incArr[i-1]+1;
 		}
 		else{
@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
 		}
 
 		//dec array
-		if(arr[n-i]<arr[n-i-1]){
+		if(arr[n-i]<=arr[n-i-1]){
 			decArr[n-1-i] = decArr[n-i]+1;
 		}
 		else{
