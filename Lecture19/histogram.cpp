@@ -8,7 +8,7 @@ int histogram(int*arr, int n) {
 	int max_area = 0;
 	for (int i = 2; i < n; ++i)
 	{
-		if (arr[i] >=  arr[indexes.top()]) {
+		if (indexes.empty() || arr[indexes.top()] <= arr[i]) {
 			indexes.push(i);
 			continue;
 		} else {
@@ -46,8 +46,8 @@ int histogram(int*arr, int n) {
 }
 int main(int argc, char const *argv[])
 {
-	int arr[8] = {0, 3, 2, 5, 6, 4, 5, 7};
-	int max_Area = histogram(arr, 8);
+	int arr[9] = {0,100, 3, 2, 5, 6, 4, 5, 7};
+	int max_Area = histogram(arr, 9);
 	cout << max_Area << endl;
 	return 0;
 }
