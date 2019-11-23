@@ -11,10 +11,8 @@ class Graph
 	
 	int V;
 public:
-	int* wt;
 	Graph(int v){
 		V= v;
-		wt = new int[V];
 	}
 
 	void addEdge(int u, int v, int weight, bool bidir = true ){
